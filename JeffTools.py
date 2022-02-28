@@ -197,27 +197,22 @@ def Function_nmapper():
 
 
     os.system('JeffTools')
-    
-    
-   
 
-if tool = '1':
+
+
+if tool == "1":
     Function_airscript()
-    
-elif tool = '2':
+
+elif tool =="2":
     Function_cracker_ssh()
 
-    
-elif tool = '3':
+elif tool == "3":
     Function_AMFinder()
-    
-    
-elif tool = '4':
+
+elif tool == "4":
     Function_nmapper()
-    
-    
+
 else:
-    print("Invalid Number, pls try again.")
+    print("Invalid number pls try again")
     os.system('JeffTools')
-    
     

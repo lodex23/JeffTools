@@ -10,6 +10,7 @@ print("2) cracker   | SSH")
 print("3) cracker   | http/https")
 print("4) AMFinder")
 print("5) nmapper")
+print("6) sslscan")
 print("------------------------------------------")
 
 tool = input("Enter the tool u want to use(ctrl + C to exit): ")
@@ -262,6 +263,31 @@ def Function_cracker_http():
 
 
 
+def Function_sslscan():
+    print("----------------------------------------")
+    print("|Welcome to the automated sslscan tool |")
+    print("----------------------------------------")
+    print("The IPVersion is currently set to: " + ipver)
+    print("-----------------")
+    print("The host is currently set to: " + target)
+
+    cmd = input("sslscan>")
+
+
+    def Function_Start_sslscan(ipv, host):
+        os.system('sslscan ' + ipv + ' ' + host)
+
+    if cmd == 'set ipversion':
+        ipver = input("Choose '-4' for an IPV4 or use '-6' for an IPV6:")
+    elif cmd == 'set host':
+        target = input("Host Adress: ")
+    elif cmd == 'run':
+        Function_Start_sslscan(ipver, target)
+    else:
+        input('Invalid Command')
+        Function_sslscan()
+
+
 
 
 
@@ -280,6 +306,9 @@ elif tool == "4":
 
 elif tool == "5":
     Function_nmapper()
+
+elif tool == "6":
+    Function_sslscan()
 
 else:
     print("Invalid number pls try again")

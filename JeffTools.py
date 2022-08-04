@@ -11,6 +11,8 @@ print("3) cracker   | http/https")
 print("4) AMFinder")
 print("5) nmapper")
 print("6) sslscan")
+print("7) email info harvester")
+print("8) snmp checker")
 print("------------------------------------------")
 
 tool = input("Enter the tool u want to use(ctrl + C to exit): ")
@@ -162,6 +164,24 @@ def Function_nmapper():
     def Function_Exit():
     	os.system('exit')
 
+    def Function_http_enum(host):
+        os.system('nmap -sV --script=http-enum ' + host)
+        input("Press enter to go back")
+        os.system('nmapper')
+
+    def Function_OS_Detection(host):
+        os.system('nmap -O ' + host)
+        input("Press enter to go back")
+        os.sytem('nmapper')
+
+    def Function_Port_scan(host):
+        print("Fill in the port u want to scan.")
+        port = input("JeffTools>")
+        print("port is set to: " + port)
+        input("press enter to continue...")
+        os.system('nmap -p' + port + ' ' + host)
+        input("Press enter to go back")
+        os.system('nmapper')
 
 
 
@@ -172,7 +192,10 @@ def Function_nmapper():
     print("1) Ip Protocol")
     print("2) Service/Version")
     print("3) All Hosts (slow)")
-    print("4) Exit")
+    print("4) Http-enumeration")
+    print("5) OS Detection")
+    print("6) Port scan")
+    print("7) Exit")
     print("--------------------------------")
 
     oP = input("Choose option: ")
@@ -192,6 +215,15 @@ def Function_nmapper():
         Function_All_Hosts(ip)
 
     elif oP == "4":
+        Function_http_enum(ip)
+
+    elif oP == "5":
+        Function_OS_Detection(ip)
+
+    elif oP == "6":
+        Function_Port_scan(ip)
+
+    elif oP == "7":
         Function_Exit()
 
     else:
@@ -264,16 +296,6 @@ def Function_cracker_http():
 
 
 def Function_sslscan():
-    print("----------------------------------------")
-    print("|Welcome to the automated sslscan tool |")
-    print("----------------------------------------")
-    print("The IPVersion is currently set to: " + ipver)
-    print("-----------------")
-    print("The host is currently set to: " + target)
-
-    cmd = input("sslscan>")
-
-
     def Function_Start_sslscan(ipv, host):
         os.system('sslscan ' + ipv + ' ' + host)
 
@@ -289,6 +311,37 @@ def Function_sslscan():
 
 
 
+
+    print("----------------------------------------")
+    print("|Welcome to the automated sslscan tool |")
+    print("----------------------------------------")
+    print("The IPVersion is currently set to: " + ipver)
+    print("-----------------")
+    print("The host is currently set to: " + target)
+
+    cmd = input("sslscan>")
+
+
+def Function_snmp():
+    os.system('clear')
+    snmp_ip = input("Target>")
+    os.system('clear')
+    snmp_port = input("Port>")
+    os.system('clear')
+    snmp_comm = input("community(default is 'public')>")
+    os.system('clear')
+    snmp_ver = input("snmp version(default is SNMPv1)>")
+
+    print("Target: " + snmp_ip + "   Port: " + snmp_port + "   Community: " + snmp_comm)
+    input("Press enter to continue")
+
+
+    def snmp_scan(t, p, c, v):
+        os.system('snmp-check -w ' + t + ' -p ' + p + ' -c ' + c + " -v " + v)
+        input("press enter to go back")
+        os.system('JeffTools')
+
+    snmp_scan(snmp_ip, snmp_port, snmp_comm, snmp_ver)
 
 
 
@@ -309,6 +362,12 @@ elif tool == "5":
 
 elif tool == "6":
     Function_sslscan()
+
+elif tool == "7":
+    Function_Email_Harvester()
+
+elif tool == "8":
+    Function_snmp()
 
 else:
     print("Invalid number pls try again")
